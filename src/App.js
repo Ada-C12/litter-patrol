@@ -22,8 +22,9 @@ class App extends Component {
   }
 
   constructor() {
+    //sets up the item variety and behavior according to config
     super();
-
+    //sets up a new state for this game
     this.state = {
       items: [],
       points: 0,
@@ -44,14 +45,15 @@ class App extends Component {
   }
 
   render() {
+    //renders an item
     const items = this.state.items.map((item, i) => {
-      return <GameItem
+      return  <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
                // Additional props (event callbacks, etc.) can be passed here
-             />;
+               type={item.type}
+              />;
     });
 
     return (
