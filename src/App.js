@@ -49,7 +49,7 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
+               type={item.type}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
@@ -162,7 +162,7 @@ class App extends Component {
       'trees-2',
       'ground'
     ];
-    
+
     return (
       <div className="level-bg">
         {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}
