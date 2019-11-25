@@ -19,11 +19,13 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
+    const classNames = ['game-item'];
+
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={classNames.join(' ')} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
