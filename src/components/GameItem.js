@@ -7,6 +7,7 @@ class GameItem extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
   }
 
   onItemClicked = () => {
@@ -20,7 +21,18 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    let icon = ItemIcons.litter;
+    if (this.props.type != "litter") {
+      if (this.props.type === "rock") {
+        icon = ItemIcons.rock;
+      } else if (this.props.type === "bush") {
+        icon = ItemIcons.bush;
+      } else if (this.props.type === "flower") {
+        icon = ItemIcons.flower;
+      } else {
+        icon = ItemIcons.mushroom;
+      }
+    }
 
     return (
       <div className="game-item" style={itemStyle}>
