@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
-import App from '../App';
+// import App from '../App';
 
 class GameItem extends Component {
   constructor (props) {
