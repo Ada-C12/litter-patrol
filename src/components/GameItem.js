@@ -3,10 +3,13 @@ import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
+// inheriting props from Component
+// proptypes expect height and layer to be passed in through props
 class GameItem extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
   }
 
   onItemClicked = () => {
@@ -20,8 +23,9 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
-
+  
+    const icon = ItemIcons[this.props.type]
+   
     return (
       <div className="game-item" style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
