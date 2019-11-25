@@ -20,7 +20,7 @@ class App extends Component {
     spawnFloor: 0, // offset from bottom of game "level" in pixels
     itemLifetime: 10 * 1000, // 10 seconds (should be longer than CSS animation time)
   }
-
+// Points always start at 0  and items starts as an empty array
   constructor() {
     super();
 
@@ -30,8 +30,8 @@ class App extends Component {
     };
 
     // Uncomment this to spawn a single test item
-    // const testItem = this.spawnItem(Date.now());
-    // this.state.items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
@@ -49,7 +49,7 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
+               type={item.type}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
