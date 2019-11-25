@@ -34,7 +34,7 @@ class App extends Component {
     // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    this.enableSpawner();
+     this.enableSpawner();
 
     console.log(this.state);
   }
@@ -50,6 +50,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
 
+               type={item.type}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
