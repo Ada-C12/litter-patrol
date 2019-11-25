@@ -33,6 +33,9 @@ class App extends Component {
     // const testItem = this.spawnItem(Date.now());
     // this.state.items.push(testItem);
 
+    // console.log(this.state.items[0].type);
+    
+
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
@@ -46,12 +49,13 @@ class App extends Component {
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
-             />;
+              height={item.height}     // Height - used for a CSS style to position on the screen
+              layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+              key={item.id}            // Key - to help React with performance
+              
+              // Additional props (event callbacks, etc.) can be passed here
+              type={item.type}    // rock/litter/flowers/mushroom/etc
+            />;
     });
 
     return (
@@ -64,6 +68,7 @@ class App extends Component {
         <section className="level">
           {this.levelBackground()}
           {items}
+          {/* {console.log(items)} */}
         </section>
 
       </div>
