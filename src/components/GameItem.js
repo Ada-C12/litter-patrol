@@ -10,8 +10,23 @@ class GameItem extends Component {
     type: PropTypes.string.isRequired,
   }
 
+  constructor() {
+    super();
+
+    this.state = {};
+  }
+
   onItemClicked = () => {
-    // Fill this in for Wave 2!
+    let spotted;
+
+    if (this.props.type === 'litter') {
+      spotted = 'spotted-litter';
+    }
+    else {
+      spotted = 'spotted-nature';
+    }
+
+    this.setState({ spotted: spotted });
   }
     
   render() {
@@ -22,10 +37,11 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.type];
+    const classes = `game-item ${this.state.spotted}`;
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={classes} style={itemStyle} onClick={this.onItemClicked}>
+        <img src={icon} alt="Item" className='icon-item'></img>
       </div>
     );
   }
