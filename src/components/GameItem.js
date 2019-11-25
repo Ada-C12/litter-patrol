@@ -10,7 +10,9 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 2!
+    if(type === 'litter') {
+      this.setState({ points: this.state.points + 1 });
+    }
   }
     
   render() {
@@ -20,7 +22,7 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
 
     return (
       <div className="game-item" style={itemStyle}>
