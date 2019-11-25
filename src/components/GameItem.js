@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
+import { deflate } from 'zlib';
 
 class GameItem extends Component {
   static propTypes = {
@@ -20,7 +21,7 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    let icon = ItemIcons[this.props.type];
 
     return (
       <div className="game-item" style={itemStyle}>
