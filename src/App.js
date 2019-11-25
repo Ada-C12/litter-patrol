@@ -34,7 +34,7 @@ class App extends Component {
     // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    this.enableSpawner();
+    // this.enableSpawner();
 
     console.log(this.state);
   }
