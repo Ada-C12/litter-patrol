@@ -17,7 +17,6 @@ class GameItem extends Component {
   }
   
   onItemClicked = () => {
-    // Fill this in for Wave 2!
     if (this.props.itemType === 'litter') {
       this.setState( { classes: this.state.classes.concat(" spotted-litter") } );
     } else {
@@ -33,8 +32,6 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-    // const icon = ItemIcons.rock;
     const itemIcon = this.props.itemType;
     const icon = ItemIcons[itemIcon];
 
