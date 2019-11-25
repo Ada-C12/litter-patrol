@@ -21,6 +21,7 @@ class GameItem extends Component {
 
     if (this.props.type === 'litter') {
       spotted = 'spotted-litter';
+      this.props.onScore();
     }
     else {
       spotted = 'spotted-nature';
