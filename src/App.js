@@ -43,6 +43,8 @@ class App extends Component {
     // Fill this in for Wave 3!
     if (itemType === 'litter') {
       this.setState( {points: this.state.points + 1} );
+    } else {
+      this.setState( {points: this.state.points - 1} );
     }
   }
 
