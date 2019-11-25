@@ -6,11 +6,22 @@ import PropTypes from "prop-types";
 class GameItem extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
-    layer: PropTypes.number.isRequired
+    layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired
   };
 
-  onItemClicked = () => {
-    // Fill this in for Wave 2!
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      spotted: false
+    };
+  }
+
+  onItemClicked = event => {
+    if (!this.state.spotted) {
+      this.setState({ spotted: true });
+    }
   };
 
   render() {
@@ -22,8 +33,22 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.type];
 
+    let status = "";
+
+    if (this.state.spotted) {
+      if (this.props.type === "litter") {
+        status = "spotted-litter";
+      } else {
+        status = "spotted-nature";
+      }
+    }
+
     return (
-      <div className="game-item" style={itemStyle}>
+      <div
+        className={"game-item " + status}
+        style={itemStyle}
+        onClick={this.onItemClicked}
+      >
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
