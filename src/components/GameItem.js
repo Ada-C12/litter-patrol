@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 class GameItem extends Component {
   static propTypes = {
+    type: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
@@ -20,7 +21,7 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[`${this.props.type}`];
 
     return (
       <div className="game-item" style={itemStyle}>
