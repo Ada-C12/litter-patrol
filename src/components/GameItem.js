@@ -42,7 +42,7 @@ class GameItem extends Component {
     return (
       <div className="game-item" style={itemStyle}>
         <span className={spottedType}></span>
-        <img src={icon} alt="Item" className="icon-item" onClick={ this.onItemClicked}></img>
+        <img onClick={ this.onItemClicked} src={icon} alt="Item" className="icon-item" ></img>
       </div>
     );
     }
