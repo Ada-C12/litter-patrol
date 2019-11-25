@@ -18,10 +18,8 @@ class GameItem extends Component {
   
   onItemClicked = () => {
     if (this.props.itemType === 'litter') {
-      // this.setState( { classes: this.state.classes.concat(" spotted-litter") } );
       this.setState({spottedItem: "spotted-litter"})
     } else {
-      // this.setState( { classes: this.state.classes.concat(" spotted-nature") } );
       this.setState({spottedItem: "spotted-nature"})
     }
 
