@@ -12,7 +12,7 @@ class GameItem extends Component {
   onItemClicked = () => {
     // Fill this in for Wave 2!
   }
-    
+  
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -20,7 +20,7 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
 
     return (
       <div className="game-item" style={itemStyle}>
