@@ -43,6 +43,10 @@ class App extends Component {
     // Fill this in for Wave 3!
   }
 
+  beenClicked = (itemIndex) => {
+    
+  }
+
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
@@ -51,7 +55,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
                type={item.type}
                isCorrect={item.isCorrect}
-               markPresentCallback={this.markPresent}
+               beenClickedCallback={this.beenClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

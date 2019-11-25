@@ -9,9 +9,17 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
+  constructor() {
+    super();
+    this.state {
+    beenClicked: false
+    };
+  }
+
+  onItemClicked = (props) => {
     // Fill this in for Wave 2!
-    
+    this.setState ({beenClicked: true})
+    // props.beenClickedCallback(props.index)
   }
 
   render() {
