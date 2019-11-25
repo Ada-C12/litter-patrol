@@ -10,9 +10,14 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 2!
+    const status = (this.state) ? true : false;
+
+    this.setState({
+      isClicked: status,
+    });
+
   }
-    
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -21,9 +26,14 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.displayItem];
+    
+    let itemClassName = "game-item";
+    if (this.state !== null) {
+      itemClassName += (this.props.displayItem === 'litter') ? " spotted-litter" : " spotted-nature";
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div onClick={this.onItemClicked} className={itemClassName} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
