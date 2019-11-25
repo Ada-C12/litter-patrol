@@ -11,6 +11,7 @@ class GameItem extends Component {
 
   onItemClicked = () => {
     // Fill this in for Wave 2!
+    
   }
 
   render() {
