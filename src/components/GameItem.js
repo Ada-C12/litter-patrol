@@ -4,13 +4,17 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  
+  //only use the constructor when you want
+  // to extend the state. 
+
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 2!
+    
   }
     
   render() {
@@ -19,8 +23,12 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
+    
+    
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    debugger
+    const icon = ItemIcons[this.props.type];
+
 
     return (
       <div className="game-item" style={itemStyle}>

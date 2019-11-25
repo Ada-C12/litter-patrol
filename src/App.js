@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import './App.css';
 import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
+// import ItemIcons from './ItemIcons.js';
 
 class App extends Component {
   config = {
@@ -24,12 +25,13 @@ class App extends Component {
   constructor() {
     super();
 
+  
     this.state = {
       items: [],
       points: 0,
     };
 
-    // Uncomment this to spawn a single test item
+    // // Uncomment this to spawn a single test item
     // const testItem = this.spawnItem(Date.now());
     // this.state.items.push(testItem);
 
@@ -44,14 +46,19 @@ class App extends Component {
   }
 
   render() {
+    
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
+               
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
+               key={item.id} 
+               
+               type={item.type}// Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
              />;
+             
     });
 
     return (
