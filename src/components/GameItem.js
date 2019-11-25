@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
+import App from '../App';
 
 class GameItem extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
-    const pickIcon = () => {
-      var keys = Object.keys(ItemIcons)
-      return ItemIcons[keys[ keys.length * Math.random() << 0]];
-    }
-    this.icon = pickIcon()
+    this.itemClass = "game-item";
   }
 
   static propTypes = {
@@ -19,8 +16,14 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
+  //need to make sure this can only be clicked once
   onItemClicked = () => {
-    // Fill this in for Wave 2!
+    if(this.props.type === "litter" && this.itemClass === "game-item") {
+      this.itemClass = this.itemClass + " spotted-litter"
+      this.props.onClickCallback()
+    } else if (this.itemClass === "game-item") {
+      this.itemClass = this.itemClass + " spotted-nature"
+    }
   }
 
   render() {
@@ -30,8 +33,8 @@ class GameItem extends Component {
     };
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={this.icon} alt="Item" className="icon-item"></img>
+      <div className={this.itemClass} style={itemStyle} onClick={this.onItemClicked}>
+        <img src={ItemIcons[this.props.type]} alt="Item" className="icon-item" ></img>
       </div>
     );
   }
