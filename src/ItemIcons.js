@@ -5,9 +5,9 @@ import flower from './images/flower.png';
 import mushroom from './images/mushroom.png';
 
 export default {
-  litter,
-  rock,
-  bush,
-  flower,
-  mushroom
+  "litter": litter,
+  "rock": rock,
+  "bush": bush,
+  "flower": flower,
+  "mushroom": mushroom
 }
