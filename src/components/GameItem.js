@@ -20,7 +20,22 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    let icon = null;
+
+
+    if (this.props.type === "litter") {
+      icon = ItemIcons.litter;
+    } else if (this.props.type === "rock") {
+      icon = ItemIcons.rock;
+    } else if (this.props.type === "bush") {
+      icon = ItemIcons.bush;
+    } else if (this.props.type === "flower") {
+      icon = ItemIcons.flower;
+    } else if (this.props.type === "mushroom") {
+      icon = ItemIcons.mushroom;
+    }
+
+    // findType()
 
     return (
       <div className="game-item" style={itemStyle}>
