@@ -15,7 +15,7 @@ class GameItem extends Component {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
-
+  
   onItemClicked = () => {
     // Fill this in for Wave 2!
     if (this.props.itemType === 'litter') {
@@ -23,6 +23,8 @@ class GameItem extends Component {
     } else {
       this.setState( { classes: this.state.classes.concat(" spotted-nature") } );
     }
+
+    this.props.onItemClickedCallback(this.props.itemType);
   }
     
   render() {
