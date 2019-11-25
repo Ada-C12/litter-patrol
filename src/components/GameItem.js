@@ -7,7 +7,7 @@ class GameItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      classes: "game-item",
+      spottedItem: '',
     }
   }
   
@@ -18,9 +18,11 @@ class GameItem extends Component {
   
   onItemClicked = () => {
     if (this.props.itemType === 'litter') {
-      this.setState( { classes: this.state.classes.concat(" spotted-litter") } );
+      // this.setState( { classes: this.state.classes.concat(" spotted-litter") } );
+      this.setState({spottedItem: "spotted-litter"})
     } else {
-      this.setState( { classes: this.state.classes.concat(" spotted-nature") } );
+      // this.setState( { classes: this.state.classes.concat(" spotted-nature") } );
+      this.setState({spottedItem: "spotted-nature"})
     }
 
     this.props.onItemClickedCallback(this.props.itemType);
@@ -36,7 +38,7 @@ class GameItem extends Component {
     const icon = ItemIcons[itemIcon];
 
     return (
-      <div className={this.state.classes} style={itemStyle} onClick={ this.onItemClicked }>
+      <div className={`game-item ${this.state.spottedItem}`} style={itemStyle} onClick={ this.onItemClicked }>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
