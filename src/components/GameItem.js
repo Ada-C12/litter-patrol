@@ -3,6 +3,7 @@ import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
+
 class GameItem extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
@@ -10,9 +11,19 @@ class GameItem extends Component {
     type: PropTypes.string.isRequired,
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 2!
+  constructor(props) {
+    super(props);
+    this.state = {
+      spotted: false,
+    };
   }
+
+  
+
+  onItemClicked = () => {
+    this.setState({ spotted: true });
+  }
+
     
   render() {
     const itemStyle = {
@@ -20,22 +31,23 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-    let icon = ItemIcons.litter;
-    if (this.props.type != "litter") {
-      if (this.props.type === "rock") {
-        icon = ItemIcons.rock;
-      } else if (this.props.type === "bush") {
-        icon = ItemIcons.bush;
-      } else if (this.props.type === "flower") {
-        icon = ItemIcons.flower;
+    let spotted = "game-item"
+
+    if (this.state.spotted === true) {
+      if (this.props.type === "litter") {
+        spotted += " spotted-litter";
       } else {
-        icon = ItemIcons.mushroom;
+        spotted += " spotted-nature";
       }
     }
 
+
+    // Update this to select the correct icon for each item
+    
+    let icon = ItemIcons[this.props.type];
+
     return (
-      <div className="game-item" style={itemStyle}>
+      <div onClick= { this.onItemClicked } className={spotted} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
