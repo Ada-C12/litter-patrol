@@ -17,37 +17,19 @@ class GameItem extends Component {
     }
   }
 
-  // this.props.classList.add(TYPE)
   onItemClicked = () => {
-    // let gameItemCss = ['game-item'];
-    // check to see how long setState takes to set 
     this.setState({spotted: true})
-    // let style = null
-    // if (this.props.spotted){
-    //   if (this.props.type === 'litter'){
-    //     // display green check
-    //     style = 'spotted-litter'
-    //   } else {
-    //     // display red x  
-    //     style = 'spotted-nature'
-    //   }
-    // }
-    // gameItemCss.push(style);
   }
-  
 
   render() {
     let style
 
-    // if (this.props.spotted){
-      if (this.state.spotted && this.props.type === 'litter'){
-        // display green check
-        style = 'spotted-litter'
-      } else if (this.state.spotted){
-        // display red x  
-        style = 'spotted-nature'
-      }
-    // }
+    if (this.state.spotted && this.props.type === 'litter'){
+      style = 'spotted-litter'
+    } else if (this.state.spotted){
+      style = 'spotted-nature'
+    }
+
     const itemStyle = {
     
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
