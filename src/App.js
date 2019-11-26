@@ -40,7 +40,10 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 3!
+    // if clicked item is spotted (clicked), check its type
+
+    // if type is litter, give green checkmark
+    // if type is not litter, give a red x 
   }
 
   render() {
@@ -50,7 +53,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}         //item type
-
+              //  onItemClicked={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

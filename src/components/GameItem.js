@@ -9,12 +9,33 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
-    if(type === 'litter') {
-      this.setState({ points: this.state.points + 1 });
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      spotted: false
     }
   }
-    
+
+  // this.props.classList.add(TYPE)
+  onItemClicked = () => {
+    // let gameItemCss = ['game-item'];
+    // check to see how long setState takes to set 
+    this.setState({spotted: true})
+    let style = null
+    if (this.props.spotted){
+      if (this.props.type === 'litter'){
+        // display green check
+        this.props.classList.add('spotted-litter')
+      } else {
+        // display red x  
+        this.props.classList.add('spotted-nature')
+      }
+    }
+    // gameItemCss.push(style);
+  }
+  
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
