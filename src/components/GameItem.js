@@ -4,22 +4,12 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-      constructor(event){
-        super()
+      constructor(props){
+        super(props)
         this.state = {
-          trash: false
+          trash: null
         };
       }
-    
-        // if item has litter, green
-          // else item has no litter, red
-          // use event handler to 
-          // item: 'spotted-litter',
-          // item: 'spotted-nature'
-
-        // state === false 
-        // state === true 
-
 
   static propTypes = {
     height: PropTypes.number.isRequired,
@@ -27,15 +17,16 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
-    this.setState({trash: !this.state.trash})
-    // if this.state === 'spotted-litter'
-    // elsif this.state === 'spotted-nature'
     
-    // Fill this in for Wave 2!
+    if (this.props.type === 'litter') {
+      console.log(this.props.type);
+      this.setState({trash: true})
+    } 
+    else {
+      this.setState({trash: false})
+    }
   }
 
-  
-    
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -44,11 +35,23 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item
     const icon = ItemIcons[this.props.type];
+    
+
+    let iconCSS = "game-item";
+    if (this.state.trash === true) {
+      iconCSS += ' spotted-litter';
+    }
+    else if (this.state.trash === false) {
+      iconCSS += ' spotted-nature';
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div onClick={ this.onItemClicked } 
+      
+       className = {iconCSS} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
+
     );
   }
 }
