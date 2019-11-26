@@ -41,11 +41,10 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item    
     const icon = ItemIcons[this.props.type];
-    let classNameNow = null;
 
+    let classNameNow;
     if (this.state.clicked) {
       classNameNow = this.state.classNameAfterClick;
-      // console.log(classNameNow);
       
     } else {
       classNameNow = "game-item";
