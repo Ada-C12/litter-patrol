@@ -17,13 +17,14 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
   
-  onItemClicked = (props) => {
+  onItemClicked = () => {
     // Fill this in for Wave 2!
     let icon = this.props.type;
     if (icon==='litter') {
       this.setState({
         cssClass: 'game-item spotted-litter',
       })
+      this.props.addScoreCallback();
     } else {
       this.setState({
         cssClass: 'game-item spotted-nature',
