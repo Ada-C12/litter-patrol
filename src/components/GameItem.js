@@ -20,7 +20,7 @@ class GameItem extends Component {
 
   onItemClicked = () => {
     this.setState({spotted: true});
-    this.props.onItemClicked(this.props.type);
+    this.props.pointsCallback(this.props.type);
   }
 
   render() {
