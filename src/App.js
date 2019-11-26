@@ -26,7 +26,7 @@ class App extends Component {
 
     this.state = {
       items: [],
-      points: 0,
+      points: 0
     };
 
     // Uncomment this to spawn a single test item
@@ -39,10 +39,15 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // if (this.props.type === "litter") {}
-    // this.setState({ points: this.state.points + 1 });
-  }
+  onItemClicked = (type) => {
+    if (type === "litter") {
+      this.setState({ 
+        points: this.state.points + 1 });
+      } else {
+      this.setState({
+        points: this.state.points - 1})
+      };
+  };
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -52,6 +57,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
 
                type={item.type}
+               clickCallBackAction={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

@@ -22,8 +22,10 @@ class GameItem extends Component {
     } 
 
     if (this.props.type === 'litter') {
+      this.props.clickCallBackAction(this.props.type);
       this.className = "spotted-litter"
     } else {
+      this.props.clickCallBackAction(this.props.type);
       this.className = "spotted-nature"
     };
 // if spotted litter  change to true
@@ -43,7 +45,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type];
     return (
       <div className={`game-item ${this.className}`} style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item" onClick={this.onItemClicked}></img>
+        <img src={icon} alt="Item" className="icon-item" onClick={this.onItemClicked} points={this.points}></img>
       </div>
     );
   }
