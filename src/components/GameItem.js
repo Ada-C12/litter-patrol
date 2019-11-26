@@ -9,19 +9,9 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 2!
-  }
-    
+  iconChooser = () => {
 
-
-  itemPicker = () => {
-
-  }
-
-
-  render() {
-
+  //THIS SECTION DETERMINES HOW THE ICON WILL BE CHOSEN:
     // Note, handles are shuffled before being put in object because object cannot be shuffled. ATM, wondering if this is better done with a map. Are the choices really random or are they running 1-5 really fast? 
 
     // an array that will be used as identifications for handles to grab specific icons
@@ -49,6 +39,14 @@ class GameItem extends Component {
       5: ItemIcons.mushroom
     }
 
+    return really[choices[0]]
+
+  }
+
+  render() {
+
+
+  // THIS SECTION DETERMINES HOW/WHERE THE ICON WILL BE DISPLAYED
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
@@ -57,8 +55,9 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     // const icon = ItemIcons.rock;
 
+  
     // this selects the item from really based on whatever is at the first handle spot
-    let icon = really[choices[0]];
+    let icon = this.iconChooser()
 
     return (
       
