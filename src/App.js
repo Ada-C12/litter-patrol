@@ -39,7 +39,7 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = (index) => {
+  onItemClicked = () => {
     this.setState({
       points: this.state.points + 1
     });
