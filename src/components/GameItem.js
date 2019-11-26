@@ -9,8 +9,10 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 2!
+  onItemClicked = (event) => {
+    // this.setState({
+    //   type:event.target.value
+    // })
   }
     
   render() {
@@ -20,7 +22,7 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
 
     return (
       <div className="game-item" style={itemStyle}>
