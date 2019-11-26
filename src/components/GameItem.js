@@ -24,9 +24,10 @@ class GameItem extends Component {
 
     if (this.state.clicked) {
       if (this.props.type === 'litter') {
-        this.state.spottedType = 'spotted-litter';
+        this.setState({spottedType: 'spotted-litter'});
+        //call scoring function here
       } else {
-        this.state.spottedType = 'spotted-nature';
+        this.setState({spottedType: 'spotted-nature'});
       }
     }
   }
@@ -47,8 +48,7 @@ class GameItem extends Component {
         <img onClick={ this.onItemClicked} src={icon} alt="Item" className="icon-item" ></img>
       </div>
     );
-    }
-  
   }
+}
 
 export default GameItem;
