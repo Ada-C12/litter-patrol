@@ -16,7 +16,7 @@ class App extends Component {
     },
     spawnRate: 1.2, // Hz
     spawnRateRnd: 1.79, // randomization factor
-    spawnHeight: 100, // height of item spawn area in pixels
+    spawnHeight: 150, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
     itemLifetime: 10 * 1000, // 10 seconds (should be longer than CSS animation time)
   }
@@ -39,8 +39,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 3!
+  onItemClickedCallback = (itemType) => {
+    if( itemType === 'litter'){
+      this.setState({
+        points: this.state.points + 1 
+      })
+    }
   }
 
   render() {
@@ -49,7 +53,8 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-              
+               
+               onItemClickedCallback= {this.onItemClickedCallback}
                type={item.type}
                // Additional props (event callbacks, etc.) can be passed here
              />;
