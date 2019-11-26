@@ -18,8 +18,8 @@ class GameItem extends Component {
 
   onItemClicked = () => {
     if (this.props.type === 'litter') {
-      this.setState({trash: true})
-    } 
+      this.setState({trash: true});
+      this.props.onItemScored('litter'); }
     else {
       this.setState({trash: false})
     }
