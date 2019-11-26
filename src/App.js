@@ -23,7 +23,7 @@ class App extends Component {
 
   constructor() {
     super();
-
+    // tracking how many items have been clicked and the current points
     this.state = {
       items: [],
       points: 0,
@@ -39,8 +39,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 3!
+  onItemScoreClicked = () => {
+    let points = this.state.points += 1
+
+    this.setState({
+      points: points
+    });
   }
 
   render() {
@@ -49,8 +53,9 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
+                type={item.type}
                // Additional props (event callbacks, etc.) can be passed here
+                score={this.onItemScoreClicked }
              />;
     });
 
