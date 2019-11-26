@@ -16,27 +16,23 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-
-
   onItemClicked = (props) => {
     if (this.props.type === "litter") {
       this.setState({className: "game-item spotted-litter"})
+      this.props.score();
     }
+    
     else {
       this.setState({className: "game-item spotted-nature"})
     }
   }
-    
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-    // const icon = ItemIcons.forEach(function(item) {
-    //   console.log(item);
-    // });
     let imageHelper = this.props.type;
     const icon = ItemIcons[imageHelper];
 
