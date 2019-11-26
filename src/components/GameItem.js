@@ -19,11 +19,8 @@ class GameItem extends Component {
   onItemClicked = () => {
     // Fill this in for Wave 2!
     if (this.props.type === "litter") {
-      console.log("litter")
       this.setState({ spotted: "spotted-litter" });
     } else {
-
-      console.log("other")
       this.setState({ spotted: "spotted-nature" });
     }
   }
@@ -39,7 +36,6 @@ class GameItem extends Component {
 
     return (
       <div className={`game-item ${this.state.spotted}`} style={itemStyle} onClick={this.onItemClicked}>
-        
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
