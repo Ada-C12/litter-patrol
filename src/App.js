@@ -39,8 +39,13 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 3!
+  onItemClicked = (itemIndex) => {
+    let gameItems = this.state.items;
+    if (gameItems[itemIndex].type === 'litter') {
+      this.setState({
+        points: this.state.points + 1,
+      }); 
+    }
   }
 
   render() {
@@ -51,6 +56,8 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
 
                displayItem={item.type}
+               onItemClickedCallback={this.onItemClicked}
+               index={i}
              />;
     });
 
@@ -162,7 +169,7 @@ class App extends Component {
       'trees-2',
       'ground'
     ];
-    
+
     return (
       <div className="level-bg">
         {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}
