@@ -17,12 +17,17 @@ class GameItem extends Component {
       clicked: false,
     }
   }
+
   onItemClicked = () => {
     // Fill this in for Wave 2!
-    this.setState({
-      clicked: true,
-      })
+    if(!this.state.clicked) {
+      this.setState({
+        clicked: true,
+        });
+      this.props.onItemClickedItem(this.props.type);
 
+    }
+    
   }
     
 

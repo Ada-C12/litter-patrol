@@ -39,8 +39,13 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (type) => {
     // Fill this in for Wave 3!
+    if(type === 'litter') {
+      this.setState({
+        points: this.state.points + 1,
+      });
+    }
   }
 
   render() {
@@ -52,6 +57,7 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
                type={item.type}
+               onItemClickedItem={this.onItemClicked}
              />;
     });
 
