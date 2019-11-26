@@ -13,14 +13,14 @@ class GameItem extends Component {
     super();
     this.state = {
     beenClicked: false,
-    style: '',
+    className: '',
     };
   }
 
   onItemClicked = (props) => {
     // Fill this in for Wave 2!
     this.setState ({beenClicked: true})
-    this.props.type === 'litter' ? this.setState({style: 'spotted-litter'}) : this.setState({style: 'spotted-nature'})
+    this.props.type === 'litter' ? this.setState({className: 'spotted-litter'}) : this.setState({className: 'spotted-nature'})
   }
 
   render() {
@@ -33,7 +33,7 @@ class GameItem extends Component {
       let icon = ItemIcons[this.props.type]
 
     return (
-      <div className={'game-item'} style={itemStyle} onClick={this.onItemClicked}>
+      <div className={`game-item ${this.state.className}`} style={itemStyle} onClick={this.onItemClicked} >
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
