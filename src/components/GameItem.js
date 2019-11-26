@@ -19,6 +19,7 @@ class GameItem extends Component {
   onItemClicked = (props) => {
     // Fill this in for Wave 2!
     this.setState ({beenClicked: true})
+    class = this.props.type === litter ? spotted-litter : spotted-nature
     // props.beenClickedCallback(props.index)
   }
 
