@@ -22,6 +22,7 @@ class GameItem extends Component {
     this.setState({
       spotted: true
     })
+    this.props.onItemClickedCallback(this.props.type)
   }
   
   render() {
@@ -34,8 +35,6 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type];
 
     let spottedType = null;
-    console.log('this.props.type: ', this.props.type)
-    console.log('this.state.spotted: ', this.state.spotted)
 
     if (this.props.type === "litter" && this.state.spotted) {
       spottedType = "spotted-litter" } else if (this.state.spotted) {
