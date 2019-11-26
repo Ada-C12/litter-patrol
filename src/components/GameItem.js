@@ -8,7 +8,7 @@ class GameItem extends Component {
     super(props);
 
     this.state = {
-      selected: false, 
+      selected: '', 
       // type: props.type
     }
   }
@@ -19,22 +19,19 @@ class GameItem extends Component {
     icon: PropTypes.string.isRequired,
   }
 
-  selectedClass = () => {
-
-  }
-// TODO Classes: spotted-litter or spotted-nature
   onItemClicked = () => {
-    // TODO if already true, don't do
-    if (this.state.selected === false && this.props.icon === "litter") {
+    if ((this.state.selected === false || this.state.selected === '') && this.props.icon === "litter") {
       this.setState({
-        selected: true
+        selected: true, 
       });
-      // console.log("litter")
     } else if (this.props.icon !== "litter") {
-      // console.log("not litter")
+      this.setState({
+        selected: false
+      });
     }
   }
   
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -46,7 +43,7 @@ class GameItem extends Component {
     const icon = ItemIcons[`${this.props.icon}`];
 
     return (
-      <div className={`game-item `} style={itemStyle} onClick={this.onItemClicked}>
+      <div className={`game-item ${(this.state.selected === '') ? '': (this.state.selected == true) ? 'spotted-litter'  : 'spotted-nature'}`} style={itemStyle} onClick={this.onItemClicked}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
