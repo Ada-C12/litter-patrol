@@ -17,7 +17,13 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
+    console.log('clicked');
+
     this.setState({ spotted: true });
+
+    if (this.props.type === "litter")  {
+      this.props.score();
+    }
   }
 
   
@@ -32,9 +38,6 @@ render() {
   else if (this.state.spotted === false ) {
     styleName = "game-item";
   }
- 
-
-
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
@@ -45,9 +48,8 @@ render() {
     const icon = ItemIcons[this.props.type];
 
     return (
-      <div className={styleName} style={itemStyle}>
-          <img src={icon} alt="Item" className="icon-item" onClick= { this.onItemClicked }></img>
-        
+      <div className={styleName} style={itemStyle} onClick= {this.onItemClicked}>
+          <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
   }
