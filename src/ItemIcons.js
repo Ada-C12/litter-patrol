@@ -1,4 +1,3 @@
-
 import litter from './images/litter.png';
 import rock from './images/rock.png';
 import bush from './images/bush.png';

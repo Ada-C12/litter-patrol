@@ -16,14 +16,19 @@ class GameItem extends Component {
   constructor() {
     super();
     this.state = ({
-      spotted: false
+      spotted: false,
     });
   }
 
   onItemClicked = (event) => {
-    this.setState({
-      spotted :true,
-    });
+    if (this.state.spotted === false) {
+      this.setState({
+        spotted :true,
+      });
+
+      this.props.onItemClickedCallback
+      (this.props);
+    }
   }
     
   render() {
