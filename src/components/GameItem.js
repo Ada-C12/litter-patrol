@@ -20,6 +20,7 @@ class GameItem extends Component {
     // Fill this in for Wave 2!
     if (this.props.type === "litter") {
       this.setState({ spotted: "spotted-litter" });
+      this.props.onItemClickedCallback(this.props.type)
     } else {
       this.setState({ spotted: "spotted-nature" });
     }

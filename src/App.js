@@ -39,8 +39,11 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (item) => {
     // Fill this in for Wave 3!
+    if (item === "litter") {
+      this.setState({ points: this.state.points + 1 })
+    }
   }
 
   render() {
@@ -51,9 +54,8 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
                type={item.type}
 
-               
-
                // Additional props (event callbacks, etc.) can be passed here
+               onItemClickedCallback={ this.onItemClicked }
              />;
              
     });
