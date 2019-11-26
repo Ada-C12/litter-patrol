@@ -2,15 +2,28 @@ import React, { Component } from 'react';
 import '../App.css';
 import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
+import { deflate } from 'zlib';
 
 class GameItem extends Component {
+  constructor() {
+    super()
+    this.state = {
+      className: "game-item"
+    };
+  }
+
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 2!
+  onItemClicked = (props) => {
+    if (this.props.type === 'litter') {
+      this.setState({ className: "game-item spotted-litter" });
+      this.props.scored();
+    } else {
+      this.setState({ className: "game-item spotted-nature" }); 
+    };
   }
     
   render() {
@@ -20,10 +33,10 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    let icon = ItemIcons[this.props.type];
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={this.state.className} style={itemStyle} onClick={ this.onItemClicked }>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
