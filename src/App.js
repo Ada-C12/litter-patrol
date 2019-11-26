@@ -43,7 +43,10 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 3!
+    let currentPoints = this.state.points + 1
+    this.setState({
+      points: currentPoints,
+    })
   }
 
   render() {
@@ -56,6 +59,7 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
                type={item.type}
+               increaseScoreCallback={this.onItemClicked}
              />;
     });
 
