@@ -9,9 +9,24 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  };
+
+  
   onItemClicked = () => {
-    // Fill this in for Wave 2!
-  }
+    if (this.props.type === "litter") {
+      this.setState({
+        itemDesign: 'spotted-litter',
+      })
+    } else {
+      this.setState({
+        itemDesign: 'spotted-nature',
+      })
+    };
+  };
     
   render() {
     const itemStyle = {
@@ -20,11 +35,11 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons[this.props.type];
+    const icon = ItemIcons[this.state.type];
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div onClick={this.onItemClicked} className={`game-item ${this.state.itemDesign}`} style={itemStyle}>
+        <img src={icon} alt="Item" className="icon-item" ></img>
       </div>
     );
   }
