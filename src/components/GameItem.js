@@ -15,8 +15,11 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
   
-  onItemClicked = () => {
-    this.setState({ clicked: !this.state.clicked });
+  onItemClicked = (props) => {
+    if (!this.state.clicked && this.props.type === 'litter'){
+      this.props.onItemClickedCallBack();
+    }
+    this.setState({ clicked: true });
   }
 
   
