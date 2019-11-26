@@ -39,11 +39,11 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // if clicked item is spotted (clicked), check its type
-
-    // if type is litter, give green checkmark
-    // if type is not litter, give a red x 
+  onItemClicked = (type) => {
+    // if correct litter was clicked, add point value 
+    if (type === 'litter'){
+      this.setState({points: this.state.points + 1 })
+    } 
   }
 
   render() {
@@ -53,7 +53,7 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
                type={item.type}         //item type
-              //  onItemClicked={this.onItemClicked}
+               onItemClicked={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });

@@ -7,6 +7,7 @@ class GameItem extends Component {
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
   }
 
   constructor(props) {
@@ -18,7 +19,8 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
-    this.setState({spotted: true})
+    this.setState({spotted: true});
+    this.props.onItemClicked(this.props.type);
   }
 
   render() {
