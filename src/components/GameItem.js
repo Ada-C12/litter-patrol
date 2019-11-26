@@ -9,8 +9,19 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      spotted: false,
+    }
+  }
+
   onItemClicked = () => {
-    // Fill this in for Wave 2!
+    this.setState({
+      spotted: true,
+    });
+    this.props.onItemClickedCallback(this.props.type);
   }
     
   render() {
@@ -20,10 +31,18 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    let icon = ItemIcons[this.props.type];
+
+    let spotted = null
+
+    if (this.state.spotted === true && this.props.type === "litter") {
+      spotted = "spotted-litter";
+    } else if (this.state.spotted === true) {
+      spotted = "spotted-nature";
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={`game-item ${spotted}`} style={itemStyle} onClick={this.onItemClicked}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
