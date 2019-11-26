@@ -21,16 +21,14 @@ class GameItem extends Component {
       this.spotted = true
     } 
 
-    if (this.state.className === 'litter') {
+    if (this.props.type === 'litter') {
       this.className = "spotted-litter"
     } else {
       this.className = "spotted-nature"
-    }
+    };
 // if spotted litter  change to true
     //  if type is litter change class to spotted litter
 //  else spotted nature
-
-
 
   } 
     

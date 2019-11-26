@@ -40,7 +40,8 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 3!
+    // if (this.props.type === "litter") {}
+    // this.setState({ points: this.state.points + 1 });
   }
 
   render() {
