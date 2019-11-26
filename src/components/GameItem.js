@@ -9,9 +9,26 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 2!
+  constructor(props) {
+    super(props);
+    this.state = {
+      spotted: false,
+      displayCorrectness: null
+    };
   }
+
+  onItemClicked = () => {
+    if (this.state.spotted === false ) {
+    if (this.props.type === 'litter') {
+      this.props.onItemClicked();
+      this.setState({spotted: true,
+                    displayCorrectness: 'spotted-litter'});
+    
+    } else {
+      this.setState({spotted: true,
+                    displayCorrectness: 'spotted-nature'});
+    }
+  }}
     
   render() {
     const itemStyle = {
@@ -20,11 +37,30 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    // const icon = ItemIcons.rock;
+
+    let icon = null;
+    
+    switch(this.props.type) {
+      case 'litter':
+        icon = ItemIcons.litter;
+        break;
+      case 'rock':
+        icon = ItemIcons.rock;
+        break;
+      case 'bush':
+        icon = ItemIcons.bush;
+        break;
+      case 'flower':
+        icon = ItemIcons.flower;
+        break;
+      default:
+        icon = ItemIcons.mushroom;
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={`game-item ${this.state.displayCorrectness}`} style={itemStyle}>
+        <img src={icon} alt="Item" className="icon-item" onClick={ this.onItemClicked } ></img>
       </div>
     );
   }
