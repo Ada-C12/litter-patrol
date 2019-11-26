@@ -22,22 +22,34 @@ class GameItem extends Component {
     // let gameItemCss = ['game-item'];
     // check to see how long setState takes to set 
     this.setState({spotted: true})
-    let style = null
-    if (this.props.spotted){
-      if (this.props.type === 'litter'){
-        // display green check
-        this.props.classList.add('spotted-litter')
-      } else {
-        // display red x  
-        this.props.classList.add('spotted-nature')
-      }
-    }
+    // let style = null
+    // if (this.props.spotted){
+    //   if (this.props.type === 'litter'){
+    //     // display green check
+    //     style = 'spotted-litter'
+    //   } else {
+    //     // display red x  
+    //     style = 'spotted-nature'
+    //   }
+    // }
     // gameItemCss.push(style);
   }
   
 
   render() {
+    let style
+
+    // if (this.props.spotted){
+      if (this.state.spotted && this.props.type === 'litter'){
+        // display green check
+        style = 'spotted-litter'
+      } else if (this.state.spotted){
+        // display red x  
+        style = 'spotted-nature'
+      }
+    // }
     const itemStyle = {
+    
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
@@ -46,7 +58,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type];
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div onClick={this.onItemClicked} className={`game-item ${style}`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
