@@ -39,8 +39,10 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 3!
+  addPoint = () => {
+    this.setState({
+      points: this.state.points + 1
+    });
   }
 
   render() {
@@ -53,14 +55,15 @@ class App extends Component {
                // Additional props (event callbacks, etc.) can be passed here
               //  icon="flower"
                icon={item.type}
+               parentCB={this.addPoint}
              />;
     });
 
     return (
       <div className="game">
         <section className="hud">
-          <h2 className="score">Litter Spotted: {this.state.points}</h2>
           <img className="logo" src={logo} alt="Litter Patrol logo" />
+          <h2 className="score">Litter Spotted: {this.state.points}</h2>
         </section>
 
         <section className="level">

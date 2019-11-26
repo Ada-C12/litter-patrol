@@ -24,6 +24,7 @@ class GameItem extends Component {
       this.setState({
         selected: true, 
       });
+      this.props.parentCB();
     } else if (this.props.icon !== "litter") {
       this.setState({
         selected: false
