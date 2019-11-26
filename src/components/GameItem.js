@@ -21,7 +21,10 @@ class GameItem extends Component {
   
 
   onItemClicked = () => {
-    this.setState({ spotted: true });
+    if (this.state.spotted != true ) {
+      this.setState({ spotted: true });
+      this.props.onItemClicked(this.props.type)
+    }
   }
 
     
