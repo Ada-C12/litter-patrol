@@ -41,10 +41,13 @@ class App extends Component {
 
   onItemClicked = (itemIndex) => {
     let gameItems = this.state.items;
-    if (gameItems[itemIndex].type === 'litter') {
-      this.setState({
-        points: this.state.points + 1,
-      }); 
+    if (!gameItems[itemIndex].isClicked) {
+      gameItems[itemIndex].isClicked = true;
+      if (gameItems[itemIndex].type === 'litter') {
+        this.setState({
+          points: this.state.points + 1,
+        }); 
+      }
     }
   }
 
@@ -56,6 +59,7 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
 
                displayItem={item.type}
+               isClicked={item.isClicked}
                onItemClickedCallback={this.onItemClicked}
                index={i}
              />;

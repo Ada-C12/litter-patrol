@@ -9,21 +9,8 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isClicked: false,
-    }
-  }
-
   onItemClicked = () => {
-    if (!this.state.isClicked) {
-      this.props.onItemClickedCallback(this.props.index);
-
-      this.setState({
-        isClicked: true,
-      });
-    }
+    this.props.onItemClickedCallback(this.props.index);
   }
 
   render() {
@@ -36,7 +23,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.displayItem];
     
     let itemClassName = "game-item";
-    if (this.state.isClicked) {
+    if (this.props.isClicked) {
       itemClassName += (this.props.displayItem === 'litter') ? " spotted-litter" : " spotted-nature";
     }
 
