@@ -23,11 +23,13 @@ class App extends Component {
 
   constructor() {
     super();
+    // Here we are inheriting from the parent class baseline components
 
     this.state = {
       items: [],
       points: 0,
     };
+    // Here we are setting the state for items and points when an instance of the App class is created.
 
     // Uncomment this to spawn a single test item
     // const testItem = this.spawnItem(Date.now());
@@ -41,6 +43,11 @@ class App extends Component {
 
   onItemClicked = () => {
     // Fill this in for Wave 3!
+    let currentPoints = this.state.points;
+    let newPoints = currentPoints + 1;
+    this.setState({
+      points: newPoints,
+    });
   }
 
   render() {
@@ -49,7 +56,8 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
+               type={item.type}
+               markIncreaseCallback={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
