@@ -40,7 +40,9 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (className) => {
+       let updatedScore = this.state.points += 1
+       this.setState({points: updatedScore})
   }
 
   render() {
@@ -50,6 +52,8 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}   
                type={item.type}
+               updateScoreFunc={this.onItemClicked}
+
                         // Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
