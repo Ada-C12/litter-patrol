@@ -40,7 +40,6 @@ class App extends Component {
   }
 
   onItemClicked = (type) => {
-    // if correct litter was clicked, add point value 
     if (type === 'litter'){
       this.setState({points: this.state.points + 1 })
     } 
