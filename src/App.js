@@ -40,8 +40,6 @@ class App extends Component {
   }
 
   onItemClicked = (props) => {
-    // Fill this in for Wave 3!
-    console.log("add a point for wave 3");
     this.setState({points: this.state.points + 1});
   }
 

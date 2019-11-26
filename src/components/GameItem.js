@@ -22,18 +22,15 @@ class GameItem extends Component {
     console.log(`clicked on ${event.target.alt}`);
     
     if (event.target.alt === "litter" && !this.state.clicked) {
-
       this.setState({classNameAfterClick: 'game-item spotted-litter'});
-      
-      // add a point in parent
+      // parent will add a point
       this.props.parentCB();
 
     } else if (!this.state.clicked) {
       this.setState({classNameAfterClick: 'game-item spotted-nature'});
-    }
+    } 
     
     this.setState({clicked: true});
-    
   }
     
   render() {
@@ -55,7 +52,7 @@ class GameItem extends Component {
     }
 
     return (
-      <div className={classNameNow}  style={itemStyle}>
+      <div className={classNameNow} style={itemStyle}>
         <img src={icon} alt={this.props.type} onClick={this.onItemClicked} className="icon-item"></img>
       </div>
     );
