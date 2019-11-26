@@ -21,7 +21,7 @@ class GameItem extends Component {
     // Fill this in for Wave 2!
     this.setState({ spotted: !this.state.spotted });
     
-    if ((this.props.type === "litter") && (this.state.spotted === true)){
+    if ((this.props.type === "litter") && (this.state.spotted === false)){
       this.props.score()
     } 
   }
