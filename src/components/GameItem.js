@@ -7,7 +7,6 @@ class GameItem extends Component {
   constructor() {
     super();
     this.state = {
-      clicked: false,
       spottedType: ''
     };
   }
@@ -20,17 +19,14 @@ class GameItem extends Component {
 
   
   onItemClicked = () => {
-    this.setState({clicked: true})
-
-    if (this.state.clicked) {
       if (this.props.type === 'litter') {
         this.setState({spottedType: 'spotted-litter'});
-        //call scoring function here
+        this.props.add();
       } else {
         this.setState({spottedType: 'spotted-nature'});
       }
     }
-  }
+
     
   render() {
     const itemStyle = {
@@ -39,7 +35,7 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons[`${this.props.type}`];
+    const icon = ItemIcons[this.props.type];
 
 
     return (
@@ -49,6 +45,6 @@ class GameItem extends Component {
       </div>
     );
   }
-}
 
+}
 export default GameItem;
