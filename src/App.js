@@ -14,7 +14,7 @@ class App extends Component {
       flower: 5,
       mushroom: 5,
     },
-    spawnRate: 1.2, // Hz
+    spawnRate: .4, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
@@ -49,7 +49,8 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-               itemType={item.type}
+               type={item.type}
+               onItemClicked ={this.onItemClicked}
 
                // Additional props (event callbacks, etc.) can be passed here
                
