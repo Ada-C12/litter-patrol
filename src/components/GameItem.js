@@ -22,8 +22,12 @@ class GameItem extends Component {
 
   render() {
 
+    // Note, handles are shuffled before being put in object because object cannot be shuffled. ATM, wondering if this is better done with a map. Are the choices really random or are they running 1-5 really fast? 
+
+    // an array that will be used as identifications for handles to grab specific icons
     const choices = [1, 2, 3, 4, 5]
 
+    // shuffle function
     const shuffleIcons = function (array) {
       for (var i = array.length - 1; i > 0; i--) {
           var j = Math.floor(Math.random() * (i + 1));
@@ -33,8 +37,10 @@ class GameItem extends Component {
       };
     };
 
+    // call shuffle function on handles
     shuffleIcons(choices)
 
+    //attach handles to specific elements
     const really = {
       1: ItemIcons.litter,
       2: ItemIcons.rock,
@@ -51,6 +57,7 @@ class GameItem extends Component {
     // Update this to select the correct icon for each item
     // const icon = ItemIcons.rock;
 
+    // this selects the item from really based on whatever is at the first handle spot
     let icon = really[choices[0]];
 
     return (
@@ -58,7 +65,6 @@ class GameItem extends Component {
       <div className="game-item" style={itemStyle}>
         <img src={icon} alt="Item" 
         className="icon-item"></img>
-        {console.log(really)}
       </div>
     );
   }
