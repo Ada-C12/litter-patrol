@@ -11,26 +11,17 @@ class GameItem extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      type: props.type,
-      itemClass: null,
     }
   };
 
   onItemClicked = () => {
-    // let itemClass = "spotted-nature";
-    // if (this.props.type === "litter" ) {
-    //   itemClass = "spotted-litter"
-    // };
-
-    // Fill this in for Wave 2!
-  
-
-    if (this.state.type === 'litter') {
+    if (this.props.type === 'litter') {
+      this.props.markIncreaseCallback();
       this.setState ({
         itemClass: "spotted-litter"
       })
+
     } else {
       this.setState ({
         itemClass: "spotted-nature"
