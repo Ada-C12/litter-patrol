@@ -39,8 +39,16 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 3!
+  onItemClicked = (itemIndex) => {
+    let gameItems = this.state.items;
+    if (!gameItems[itemIndex].isClicked) {
+      gameItems[itemIndex].isClicked = true;
+      if (gameItems[itemIndex].type === 'litter') {
+        this.setState({
+          points: this.state.points + 1,
+        }); 
+      }
+    }
   }
 
   render() {
@@ -50,7 +58,10 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
 
-               // Additional props (event callbacks, etc.) can be passed here
+               displayItem={item.type}
+               isClicked={item.isClicked}
+               onItemClickedCallback={this.onItemClicked}
+               index={i}
              />;
     });
 
@@ -162,7 +173,7 @@ class App extends Component {
       'trees-2',
       'ground'
     ];
-    
+
     return (
       <div className="level-bg">
         {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}
