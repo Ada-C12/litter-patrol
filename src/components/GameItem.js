@@ -4,15 +4,27 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+      constructor(props){
+        super(props)
+        this.state = {
+          trash: null
+        };
+      }
+
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 2!
+    if (this.props.type === 'litter') {
+      this.setState({trash: true});
+      this.props.onItemScored('litter'); }
+    else {
+      this.setState({trash: false})
+    }
   }
-    
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -20,12 +32,24 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
+    
+
+    let iconCSS = "game-item";
+    if (this.state.trash === true) {
+      iconCSS += ' spotted-litter';
+    }
+    else if (this.state.trash === false) {
+      iconCSS += ' spotted-nature';
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div onClick={ this.onItemClicked } 
+      
+       className={iconCSS} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
+
     );
   }
 }
