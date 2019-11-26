@@ -20,7 +20,11 @@ class GameItem extends Component {
   onItemClicked = () => {
     // Fill this in for Wave 2!
     this.setState({ spotted: !this.state.spotted });
-  } 
+    
+    if ((this.props.type === "litter") && (this.state.spotted === true)){
+      this.props.score()
+    } 
+  }
 
   render() {
     let styleName = ""
