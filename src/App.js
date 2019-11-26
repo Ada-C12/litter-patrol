@@ -14,7 +14,7 @@ class App extends Component {
       flower: 5,
       mushroom: 5,
     },
-    spawnRate: 1.2, // Hz
+    spawnRate: 0.5, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
@@ -33,17 +33,16 @@ class App extends Component {
     // const testItem = this.spawnItem(Date.now());
     // this.state.items.push(testItem);
 
-    // console.log(this.state.items[0].type);
-    
-
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   onItemClicked = () => {
     // Fill this in for Wave 3!
+    console.log("add a point for wave 3");
+    
   }
 
   render() {
@@ -68,7 +67,6 @@ class App extends Component {
         <section className="level">
           {this.levelBackground()}
           {items}
-          {/* {console.log(items)} */}
         </section>
 
       </div>
