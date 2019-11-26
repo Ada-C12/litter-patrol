@@ -18,14 +18,17 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
+    if (this.state.spotted === false ) {
     if (this.props.type === 'litter') {
+      this.props.onItemClicked();
       this.setState({spotted: true,
                     displayCorrectness: 'spotted-litter'});
+    
     } else {
       this.setState({spotted: true,
                     displayCorrectness: 'spotted-nature'});
     }
-  }
+  }}
     
   render() {
     const itemStyle = {
