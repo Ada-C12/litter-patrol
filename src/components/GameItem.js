@@ -21,6 +21,7 @@ class GameItem extends Component {
   onItemClicked = event => {
     if (!this.state.spotted) {
       this.setState({ spotted: true });
+      this.props.increaseScore(this.props.type);
     }
   };
 
