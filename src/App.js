@@ -22,8 +22,10 @@ class App extends Component {
   }
 
   constructor() {
+    // this is calling the constructor from the parent class Component
     super();
 
+    // this is setting the initial state of items and points when an instance of the App class is created
     this.state = {
       items: [],
       points: 0,
@@ -36,14 +38,19 @@ class App extends Component {
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
+    // this will print the current state in the controller
     console.log(this.state);
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 3!
+    let currentPoints = this.state.points + 1
+    this.setState({
+      points: currentPoints,
+    })
   }
 
   render() {
+    // this is displaying the collection of game items
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
@@ -51,9 +58,12 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
+               type={item.type}
+               increaseScoreCallback={this.onItemClicked}
              />;
     });
 
+    // this is displaying the other visual elements of the game such as the score and logo
     return (
       <div className="game">
         <section className="hud">
