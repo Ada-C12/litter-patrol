@@ -14,7 +14,7 @@ class App extends Component {
       flower: 5,
       mushroom: 5,
     },
-    spawnRate: 0.5, // Hz
+    spawnRate: 0.2, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
@@ -39,10 +39,10 @@ class App extends Component {
     // console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (props) => {
     // Fill this in for Wave 3!
     console.log("add a point for wave 3");
-    
+    this.setState({points: this.state.points + 1});
   }
 
   render() {
@@ -54,6 +54,7 @@ class App extends Component {
               
               // Additional props (event callbacks, etc.) can be passed here
               type={item.type}    // rock/litter/flowers/mushroom/etc
+              parentCB={this.onItemClicked}
             />;
     });
 

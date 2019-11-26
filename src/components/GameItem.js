@@ -12,6 +12,7 @@ class GameItem extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      type: this.props.type,
       clicked: false,
       classNameAfterClick: null,
     }
@@ -21,16 +22,18 @@ class GameItem extends Component {
     console.log(`clicked on ${event.target.alt}`);
     
     if (event.target.alt === "litter" && !this.state.clicked) {
-      console.log("point + 1 by App.onClick()");
+
+      this.setState({classNameAfterClick: 'game-item spotted-litter'});
       
-      this.setState({classNameAfterClick: 'spotted-litter::before'});
-      
+      // add a point in parent
+      this.props.parentCB();
+
     } else if (!this.state.clicked) {
-      console.log('oh no');
-      this.setState({classNameAfterClick: 'spotted-nature::before'});
+      this.setState({classNameAfterClick: 'game-item spotted-nature'});
     }
     
     this.setState({clicked: true});
+    
   }
     
   render() {
@@ -41,22 +44,21 @@ class GameItem extends Component {
 
     // Update this to select the correct icon for each item    
     const icon = ItemIcons[this.props.type];
-    const afterClick = null;
+    let classNameNow = null;
 
     if (this.state.clicked) {
-      return (
-        <div className="game-item" style={itemStyle}>
-          <img src={icon} onClick={this.onItemClicked} alt={this.props.type} className={this.state.classNameAfterClick}></img>
-        </div>
-      );
+      classNameNow = this.state.classNameAfterClick;
+      // console.log(classNameNow);
+      
     } else {
-      return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} onClick={this.onItemClicked} alt={this.props.type} className="icon-item"></img>
+      classNameNow = "game-item";
+    }
+
+    return (
+      <div className={classNameNow}  style={itemStyle}>
+        <img src={icon} alt={this.props.type} onClick={this.onItemClicked} className="icon-item"></img>
       </div>
     );
-    }
-    
   }
 }
 
