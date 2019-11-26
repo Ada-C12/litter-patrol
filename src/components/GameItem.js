@@ -17,9 +17,7 @@ class GameItem extends Component {
   }
 
   onItemClicked = () => {
-    
     if (this.props.type === 'litter') {
-      console.log(this.props.type);
       this.setState({trash: true})
     } 
     else {
@@ -48,7 +46,7 @@ class GameItem extends Component {
     return (
       <div onClick={ this.onItemClicked } 
       
-       className = {iconCSS} style={itemStyle}>
+       className={iconCSS} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
 
