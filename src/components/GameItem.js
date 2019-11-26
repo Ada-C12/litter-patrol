@@ -9,8 +9,28 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 2!
+  constructor(props) {
+    super(props)
+    this.state = {
+      type: this.props.type,
+      clicked: false,
+      classNameAfterClick: null,
+    }
+  }
+
+  onItemClicked = (event) => {
+    console.log(`clicked on ${event.target.alt}`);
+    
+    if (event.target.alt === "litter" && !this.state.clicked) {
+      this.setState({classNameAfterClick: 'game-item spotted-litter'});
+      // parent will add a point
+      this.props.parentCB();
+
+    } else if (!this.state.clicked) {
+      this.setState({classNameAfterClick: 'game-item spotted-nature'});
+    } 
+    
+    this.setState({clicked: true});
   }
     
   render() {
@@ -19,15 +39,24 @@ class GameItem extends Component {
       zIndex: this.props.layer, // use props.layer to set z-index, so we display ontop of background
     };
 
-    // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    // Update this to select the correct icon for each item    
+    const icon = ItemIcons[this.props.type];
+
+    let classNameNow;
+    if (this.state.clicked) {
+      classNameNow = this.state.classNameAfterClick;
+      
+    } else {
+      classNameNow = "game-item";
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
-        <img src={icon} alt="Item" className="icon-item"></img>
+      <div className={classNameNow} style={itemStyle}>
+        <img src={icon} alt={this.props.type} onClick={this.onItemClicked} className="icon-item"></img>
       </div>
     );
   }
 }
+
 
 export default GameItem;
