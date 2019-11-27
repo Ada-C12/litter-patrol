@@ -40,18 +40,19 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 3!
+    this.setState({ points: this.state.points + 1});
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
-             />;
+              height={item.height}     // Height - used for a CSS style to position on the screen
+              layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+              key={item.id}            // Key - to help React with performance
+              // Additional props (event callbacks, etc.) can be passed here
+              type={item.type}
+              onItemClickedCallBack = {this.onItemClicked}
+            />;
     });
 
     return (
