@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import uuid from 'uuid';
-import './App.css';
-import GameItem from './components/GameItem.js';
-import logo from './images/logo.png';
+import React, { Component } from "react";
+import uuid from "uuid";
+import "./App.css";
+import GameItem from "./components/GameItem.js";
+import logo from "./images/logo.png";
+// import { threadId } from "worker_threads";
 
 class App extends Component {
   config = {
@@ -12,21 +13,21 @@ class App extends Component {
       rock: 5,
       bush: 5,
       flower: 5,
-      mushroom: 5,
+      mushroom: 5
     },
     spawnRate: 1.2, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
-    itemLifetime: 10 * 1000, // 10 seconds (should be longer than CSS animation time)
-  }
+    itemLifetime: 10 * 1000 // 10 seconds (should be longer than CSS animation time)
+  };
 
   constructor() {
     super();
 
     this.state = {
       items: [],
-      points: 0,
+      points: 0
     };
 
     // Uncomment this to spawn a single test item
@@ -39,19 +40,27 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = type => {
+    if (type === "litter") {
+      const selected = this.state.points + 1;
+      this.setState({ points: selected });
+    }
+
     // Fill this in for Wave 3!
-  }
+  };
 
   render() {
     const items = this.state.items.map((item, i) => {
-      return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
-             />;
+      return (
+        <GameItem
+          height={item.height} // Height - used for a CSS style to position on the screen
+          layer={100 + i} // Layer - used for a CSS style to show items on-top of bg
+          key={item.id} // Key - to help React with performance
+          type={item.type}
+          onItemClicked={this.onItemClicked}
+          // Additional props (event callbacks, etc.) can be passed here
+        />
+      );
     });
 
     return (
@@ -65,11 +74,9 @@ class App extends Component {
           {this.levelBackground()}
           {items}
         </section>
-
       </div>
     );
   }
-
 
   //////////////\\\\\\\\\\\\\\
   // Implementation details \\
@@ -78,7 +85,7 @@ class App extends Component {
     const newState = {};
 
     // Cull any items that are expired
-    const items = this.state.items.filter((item) => {
+    const items = this.state.items.filter(item => {
       return item.expiration !== null && item.expiration > time;
     });
 
@@ -100,7 +107,7 @@ class App extends Component {
       if (spawnDelta >= (1 / spawnRate) * 1000) {
         newState.items = [
           ...(newState.items || this.state.items),
-          this.spawnItem(time),
+          this.spawnItem(time)
         ];
       }
     }
@@ -116,14 +123,15 @@ class App extends Component {
     const type = this.randomType();
 
     const expiration = time + this.config.itemLifetime;
-    const height = Math.random() * this.config.spawnHeight + this.config.spawnFloor;
+    const height =
+      Math.random() * this.config.spawnHeight + this.config.spawnFloor;
 
     return { id, type, expiration, height };
   }
 
   randomType() {
     // Figure out the total of all the weighted types
-    const weights = Object.values(this.config.itemTypes)
+    const weights = Object.values(this.config.itemTypes);
     const totalWeight = weights.reduce((sum, weight) => sum + weight);
 
     // Get a random value between zero and the total
@@ -151,21 +159,23 @@ class App extends Component {
 
   levelBackground() {
     const layers = [
-      'clouds-1',
-      'clouds-2',
-      'clouds-3',
-      'clouds-4',
-      'hills-1',
-      'hills-2',
-      'bushes',
-      'trees-1',
-      'trees-2',
-      'ground'
+      "clouds-1",
+      "clouds-2",
+      "clouds-3",
+      "clouds-4",
+      "hills-1",
+      "hills-2",
+      "bushes",
+      "trees-1",
+      "trees-2",
+      "ground"
     ];
-    
+
     return (
       <div className="level-bg">
-        {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}
+        {layers.map(layer => (
+          <div className={`level-bg-${layer}`} key={layer} />
+        ))}
       </div>
     );
   }
