@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 3!
+    this.state.points += 1;
   }
 
   render() {
@@ -52,6 +52,7 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
               type={item.type}
+              onItemClicked={this.onItemClicked}
             />;
     });
 
