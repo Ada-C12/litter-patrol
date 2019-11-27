@@ -11,6 +11,12 @@ class GameItem extends Component {
 
   onItemClicked = () => {
     // Fill this in for Wave 2!
+    if (this.props.itemType === 'litter') {
+      this.setState({spottedItem: "spotted-litter"})
+    } else {
+      this.setState({spottedItem: "spotted-nature"})
+    }
+    this.props.onItemClickedCallBacl(this.props.itemType);
   }
     
   render() {
