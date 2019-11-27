@@ -31,7 +31,7 @@ class GameItem extends Component {
 
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={`game-item ${this.state.spottedItem}`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
