@@ -39,7 +39,7 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  increasePoint = () => {
     this.setState({points: this.state.points + 1});
   }
 
@@ -52,7 +52,7 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
               type={item.type}
-              onItemClicked={this.onItemClicked}
+              onItemClicked={this.increasePoint}
             />;
     });
 
