@@ -4,13 +4,24 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      clicked: false,
+    }
+  }
+
   static propTypes = {
     height: PropTypes.number.isRequired,
     layer: PropTypes.number.isRequired,
   }
 
   onItemClicked = () => {
-    // Fill this in for Wave 2!
+    if (!this.state.clicked && this.props.type === 'litter') {
+      this.props.onItemClickedCallback()
+    }
+    this.setState({clicked: true})
   }
     
   render() {
@@ -20,10 +31,18 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+    const icon = ItemIcons[this.props.type];
+
+    let className
+
+    if (this.props.type === "litter" && this.state.clicked === true) {
+      className = "spotted-litter"
+    } else if (this.props.type !== "litter" && this.state.clicked === true) {
+      className = "spotted-nature"
+    }
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div onClick={this.onItemClicked} className={`game-item ${className}`} style={itemStyle}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
