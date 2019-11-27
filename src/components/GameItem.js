@@ -21,6 +21,7 @@ class GameItem extends Component {
     // Fill this in for Wave 2!
     this.setState ({beenClicked: true})
     this.props.type === 'litter' ? this.setState({className: 'spotted-litter'}) : this.setState({className: 'spotted-nature'})
+    this.props.itemClicked(props.type)
   }
 
   render() {
