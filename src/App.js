@@ -26,7 +26,7 @@ class App extends Component {
 
     this.state = {
       items: [],
-      points: 0,
+      points: 0
     };
 
     // Uncomment this to spawn a single test item
@@ -34,14 +34,20 @@ class App extends Component {
     // this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
-    this.enableSpawner();
+     this.enableSpawner();
 
     console.log(this.state);
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 3!
-  }
+  onItemClicked = (type) => {
+    if (type === "litter") {
+      this.setState({ 
+        points: this.state.points + 1 });
+      } else {
+      this.setState({
+        points: this.state.points - 1})
+      };
+  };
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -50,6 +56,8 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
 
+               type={item.type}
+               clickCallBackAction={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
