@@ -14,7 +14,7 @@ class App extends Component {
       flower: 5,
       mushroom: 5,
     },
-    spawnRate: 1.2, // Hz
+    spawnRate: 0.5, // Hz
     spawnRateRnd: 1.79, // randomization factor
     spawnHeight: 100, // height of item spawn area in pixels
     spawnFloor: 0, // offset from bottom of game "level" in pixels
@@ -26,32 +26,38 @@ class App extends Component {
 
     this.state = {
       items: [],
-      points: 0,
+      points: 0
     };
 
     // Uncomment this to spawn a single test item
-    // const testItem = this.spawnItem(Date.now());
-    // this.state.items.push(testItem);
+    const testItem = this.spawnItem(Date.now());
+    this.state.items.push(testItem);
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
 
-    console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (item) => {
     // Fill this in for Wave 3!
+    if (item.type === 'litter') {
+      let updatedPoints = this.state.points + 1;
+      this.setState({
+        points: updatedPoints
+      })      
+    }
   }
 
   render() {
     const items = this.state.items.map((item, i) => {
       return <GameItem
-               height={item.height}     // Height - used for a CSS style to position on the screen
-               layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
-               key={item.id}            // Key - to help React with performance
-
+        height={item.height}     // Height - used for a CSS style to position on the screen
+        layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
+        key={item.id}            // Key - to help React with performance
+        type={item.type}
+        onItemClickedCallback={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
-             />;
+            />;
     });
 
     return (
