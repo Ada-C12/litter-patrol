@@ -38,11 +38,12 @@ class App extends Component {
     console.log(this.state);
   }
 
-  itemClicked = (itemIndex) => {
+  itemClicked = (item) => {
     // Fill this in for Wave 3!
-    this.setState({items: itemIndex, points: 1})
+    if (item.props.type === 'litter') {
+    this.setState({items: [...this.state.items, item], points: this.state.points + 1})
+    }
   }
-
 
   render() {
     const items = this.state.items.map((item, i) => {
