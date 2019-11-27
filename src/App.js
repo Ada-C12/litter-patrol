@@ -25,14 +25,12 @@ class App extends Component {
   constructor() {
     super();
 
-    
-
+  
     this.state = {
       items: [],
       points: 0,
     };
     
-
     // // Uncomment this to spawn a single test item
     // const testItem = this.spawnItem(Date.now());
     // this.state.items.push(testItem);
