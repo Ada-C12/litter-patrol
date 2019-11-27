@@ -39,9 +39,9 @@ class GameItem extends Component {
     let clicked = "game-item";
     if (this.state.click === true) {
       if (this.props.type === "litter") {
-        clicked += "spotted-litter";
+        clicked += " spotted-litter";
       } else if (this.state.click === false) {
-        clicked += "spotted-nature";
+        clicked += " spotted-nature";
       }
     }
 
