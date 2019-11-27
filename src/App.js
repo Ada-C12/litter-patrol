@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import './App.css';
 import GameItem from './components/GameItem.js';
 import logo from './images/logo.png';
+import { runInThisContext } from 'vm';
 
 class App extends Component {
   config = {
@@ -39,9 +40,16 @@ class App extends Component {
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  onItemClicked = (itemType) => { //have to pass this in
     // Fill this in for Wave 3!
+    if (itemType === 'litter') {
+      this.setState({points: this.state.points + 1})
+    } else {
+      this.setState({points: this.state.points - 1})
+    }
+    this.props.onItemClickedCallBacl(this.props.itemType);
   }
+}
 
   render() {
     const items = this.state.items.map((item, i) => {
@@ -50,6 +58,8 @@ class App extends Component {
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
 
+               itemType={item.type}
+               onItemClickedCallBack={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
