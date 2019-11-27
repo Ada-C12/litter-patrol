@@ -4,10 +4,11 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
-      gameItemType: "game-item"
+      gameItemType: "game-item",
+      isScored: false
     }
   }
 
@@ -22,6 +23,14 @@ class GameItem extends Component {
       this.setState({
         gameItemType: "game-item spotted-litter"
       })
+
+      if(!this.state.isScored){
+        this.props.onItemClickedCallback()
+        this.setState({
+          isScored: true
+        })
+      }
+      
     } else {
       this.setState({
         gameItemType: "game-item spotted-nature"
