@@ -4,8 +4,8 @@ import ItemIcons from '../ItemIcons.js';
 import PropTypes from 'prop-types';
 
 class GameItem extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       gameItemType: "game-item",
       isScored: false
