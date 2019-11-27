@@ -52,4 +52,11 @@ class GameItem extends Component {
   }
 }
 
+GameItem.propTypes = {
+  height: PropTypes.number.isRequired,
+  layer: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  onItemClicked: PropTypes.func.isRequired,
+}
+
 export default GameItem;
