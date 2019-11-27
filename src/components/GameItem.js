@@ -19,8 +19,7 @@ class GameItem extends Component {
   onItemClicked = () => {
     if (!this.state.clicked) {
       this.setState({clicked: true});
-      this.props.onItemClicked(this.props.type);
-    
+      this.props.onItemClickedCallback(this.props.type);
     }
   }
     
@@ -40,7 +39,7 @@ class GameItem extends Component {
     const icon = ItemIcons[this.props.type];
 
     return (
-      <div className={classNames.join(' ')} style={itemStyle} onClick={this.onClick}>
+      <div className={classNames.join(' ')} style={itemStyle} onClick={this.onItemClicked}>
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
