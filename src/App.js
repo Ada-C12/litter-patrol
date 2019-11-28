@@ -23,11 +23,11 @@ class App extends Component {
 
   constructor() {
     super();
-
     this.state = {
       items: [],
       points: 0,
     };
+
 
     // Uncomment this to spawn a single test item
     // const testItem = this.spawnItem(Date.now());
@@ -35,12 +35,14 @@ class App extends Component {
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
-
     console.log(this.state);
   }
 
-  onItemClicked = () => {
+  itemClicked = (item) => {
     // Fill this in for Wave 3!
+    if (item.props.type === 'litter') {
+    this.setState({items: [...this.state.items, item], points: this.state.points + 1})
+    }
   }
 
   render() {
@@ -49,8 +51,8 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
-               // Additional props (event callbacks, etc.) can be passed here
+               type={item.type}
+               itemClicked={this.itemClicked}
              />;
     });
 
@@ -69,6 +71,7 @@ class App extends Component {
       </div>
     );
   }
+
 
 
   //////////////\\\\\\\\\\\\\\
@@ -162,7 +165,7 @@ class App extends Component {
       'trees-2',
       'ground'
     ];
-    
+
     return (
       <div className="level-bg">
         {layers.map(layer => (<div className={`level-bg-${layer}`} key={layer} />))}

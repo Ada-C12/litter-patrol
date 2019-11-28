@@ -9,10 +9,25 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  onItemClicked = () => {
-    // Fill this in for Wave 2!
+  constructor() {
+    super();
+    this.state = {
+    beenClicked: false,
+    className: '',
+    };
   }
-    
+
+  onItemClicked = (event) => {
+    // Fill this in for Wave 2!
+    if (this.props.type === 'litter' && this.state.beenClicked === false) {
+      this.setState({beenClicked: true, className: 'spotted-litter'})
+      this.props.itemClicked(this)
+    }
+    else if (this.state.beenClicked === false) {
+      this.setState({beenClicked: true, className: 'spotted-nature'})
+    }
+  }
+
   render() {
     const itemStyle = {
       bottom: `${this.props.height}px`, // use props.height to offset from the bottom of screen
@@ -20,10 +35,10 @@ class GameItem extends Component {
     };
 
     // Update this to select the correct icon for each item
-    const icon = ItemIcons.rock;
+      let icon = ItemIcons[this.props.type]
 
     return (
-      <div className="game-item" style={itemStyle}>
+      <div className={`game-item ${this.state.className}`} style={itemStyle} onClick={this.onItemClicked} >
         <img src={icon} alt="Item" className="icon-item"></img>
       </div>
     );
