@@ -40,6 +40,7 @@ class App extends Component {
     console.log(this.state);
   }
 
+
   onItemClicked = () => {
     // Fill this in for Wave 3!
   }
@@ -54,6 +55,8 @@ class App extends Component {
 
                // Additional props (event callbacks, etc.) can be passed here
                itemType = {item.type}
+
+              //  onItemClickedCallBack={this.onItemClicked}
              />;
     });
 
