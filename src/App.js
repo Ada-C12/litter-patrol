@@ -29,21 +29,25 @@ class App extends Component {
       points: 0,
     };
 
-    // Uncomment this to spawn a single test item
+    // // Uncomment this to spawn a single test item
     // const testItem = this.spawnItem(Date.now());
     // this.state.items.push(testItem);
+    // console.log(this.state);
+
 
     // Uncomment this to automatically spawn new items
     this.enableSpawner();
-
     console.log(this.state);
   }
 
+
   onItemClicked = () => {
-    // Fill this in for Wave 3!
+// at the time that points is called, this function will know that "points" is App's points 
+    this.state.points += 1
   }
 
   render() {
+
     const items = this.state.items.map((item, i) => {
       return <GameItem
                height={item.height}     // Height - used for a CSS style to position on the screen
@@ -51,6 +55,10 @@ class App extends Component {
                key={item.id}            // Key - to help React with performance
 
                // Additional props (event callbacks, etc.) can be passed here
+               itemType = {item.type}
+
+               //this calls back onItemClicked as a function that will work in GameItem because it's getting passed in right now, and it'll be set as equal to onItemClickedCallBack inside GameItem.js
+               onItemClickedCallBack = {this.onItemClicked}
              />;
     });
 
