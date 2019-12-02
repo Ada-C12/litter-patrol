@@ -9,7 +9,7 @@ class GameItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      spottedItem: false
+      spottedItem: false,
     }
   }
 
@@ -18,21 +18,26 @@ class GameItem extends Component {
     layer: PropTypes.number.isRequired,
   }
 
-  // this changes the state upon clicking 
   onItemClicked = () => {
-      this.setState({spottedItem: true})
+    //upon clicking, this changes the spotted state
+    this.setState({spottedItem: true})
+
+    //this calls onItemClickedCallBack (which is passed in from App.js) to increment the points if the item that was clicked is litter
+    if (this.props.itemType === 'litter') {
+      this.props.onItemClickedCallBack()
+    }
   }
 
   render() {
 
     // this will change the class (to be used by the CSS) based on whether the item has been clicked on AND if the item type that got clicked is litter
-    let spottedClass = null
 
-    if (this.state.spottedItem === true) {
+    let spottedClass = null
+    if (this.state.spottedItem === true && this.props.itemType === 'litter') {
+      spottedClass = "spotted-litter"
+    }
+    else if (this.state.spottedItem === true) {
       spottedClass = "spotted-nature"
-      if (this.props.itemType === 'litter') {
-        spottedClass = "spotted-litter"
-      }
     }
 
   // THIS SECTION DETERMINES HOW/WHERE THE ICON WILL BE DISPLAYED
