@@ -41,6 +41,12 @@ class App extends Component {
 
   onItemClicked = () => {
     // Fill this in for Wave 3!
+    let currentPoints = this.state.points;
+    let addPoint = currentPoints + 1;
+
+    this.setState( {
+      points: addPoint,
+    });
   }
 
   render() {
@@ -49,7 +55,8 @@ class App extends Component {
                height={item.height}     // Height - used for a CSS style to position on the screen
                layer={100 + i}          // Layer - used for a CSS style to show items on-top of bg
                key={item.id}            // Key - to help React with performance
-
+               type={item.type}
+               eventCallback={this.onItemClicked}
                // Additional props (event callbacks, etc.) can be passed here
              />;
     });
